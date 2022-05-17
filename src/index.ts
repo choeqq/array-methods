@@ -64,6 +64,13 @@ function flat<T>(array: T[], depth = 1) {
   }
 }
 
+function find<T>(array: T[], cb: Function) {
+  for (let i = 0; i < array.length; i++) {
+    const element = array[i];
+    if (cb(element, i, array)) return element;
+  }
+}
+
 module.exports = {
   forEach,
   map,
@@ -72,4 +79,5 @@ module.exports = {
   some,
   every,
   flat,
+  find,
 };

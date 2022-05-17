@@ -52,9 +52,24 @@ function every<T>(array: T[], cb: Function) {
   return true;
 }
 
+function flat<T>(array: T[], depth = 1) {
+  const newArray = [];
+  for (let i = 0; i < array.length; i++) {
+    const element = array[i];
+    if (Array.isArray(element) && depth > 0) {
+      newArray.push(...flat(element, depth - 1));
+    } else {
+      newArray.push(element);
+    }
+  }
+}
+
 module.exports = {
   forEach,
   map,
   filter,
   reduce,
+  some,
+  every,
+  flat,
 };

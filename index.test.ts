@@ -7,7 +7,7 @@ const {
   every,
   flat,
   find,
-} = require("./src/arrayMethods.ts");
+} = require("./src/index.ts");
 
 // const forEach = (a, ...args) => a.forEach(...args)
 // const map = (a, ...args) => a.map(...args)

@@ -13,7 +13,18 @@ function map<T>(array: T[], cb: Function) {
   return newArray;
 }
 
+function filter<T>(array: T[], cb: Function) {
+  const newArray = [];
+  for (let i = 0; i < array.length; i++) {
+    const element = array[i];
+    if (cb(element, i, array)) newArray.push(element);
+  }
+
+  return newArray;
+}
+
 module.exports = {
   forEach,
   map,
+  filter,
 };

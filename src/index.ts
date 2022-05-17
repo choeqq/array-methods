@@ -44,6 +44,14 @@ function some<T>(array: T[], cb: Function) {
   return false;
 }
 
+function every<T>(array: T[], cb: Function) {
+  for (let i = 0; i < array.length; i++) {
+    if (!cb(array[i], i, array)) return false;
+  }
+
+  return true;
+}
+
 module.exports = {
   forEach,
   map,

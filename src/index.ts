@@ -23,8 +23,22 @@ function filter<T>(array: T[], cb: Function) {
   return newArray;
 }
 
+function reduce<T>(array: T[], cb: Function, initialValue: any) {
+  let currentValue = initialValue;
+  for (let i = 0; i < array.length; i++) {
+    const element = array[i];
+    if (initialValue === null && i === 0) {
+      currentValue = element;
+    } else {
+      currentValue = cb(currentValue, element, i, array);
+    }
+  }
+  return currentValue;
+}
+
 module.exports = {
   forEach,
   map,
   filter,
+  reduce,
 };

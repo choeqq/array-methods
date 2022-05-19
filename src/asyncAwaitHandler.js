@@ -1,7 +1,7 @@
 const ids = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 const initApp = async () => {
-  getPostsConcurrently(ids);
+  getPostSerialized(ids);
 };
 
 document.addEventListener("DOMContentLoaded", initApp);
@@ -32,8 +32,19 @@ const getPost = async (id) => {
 // };
 
 // way faster, not guaranteed to be in order
-const getPostsConcurrently = async (ids) => {
-  const posts = await Promise.allSettled(ids.map(async (id) => getPost(id)));
-  console.log(posts);
+// const getPostsConcurrently = async (ids) => {
+//   const posts = await Promise.allSettled(ids.map(async (id) => getPost(id)));
+//   console.log(posts);
+//   console.log("I will wait 4 u ");
+// };
+
+const getPostSerialized = async (ids) => {
+  await ids.reduce(async (acc, id) => {
+    // waits for the previous item to complete
+    await acc;
+    // get the next item
+    const post = await getPost(id);
+    console.log(post);
+  }, Promise.resolve());
   console.log("I will wait 4 u ");
 };

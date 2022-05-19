@@ -31,8 +31,9 @@ const getPost = async (id) => {
 //   console.log("I will wait 4u");
 // };
 
+// way faster, not guaranteed to be in order
 const getPostsConcurrently = async (ids) => {
-  const posts = await Promise.all(ids.map(async (id) => getPost(id)));
+  const posts = await Promise.allSettled(ids.map(async (id) => getPost(id)));
   console.log(posts);
   console.log("I will wait 4 u ");
 };

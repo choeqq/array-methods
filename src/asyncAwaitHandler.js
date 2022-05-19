@@ -6,12 +6,15 @@ const initApp = async () => {
 
 document.addEventListener("DOMContentLoaded", initApp);
 
-const getPost = async (id: number) => {
+const getPost = async (id) => {
   return await (
     await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
   ).json();
 };
 
-const useForEach = (ids: number[]) => {
-  ids.forEach((id) => console.log(id));
+const useForEach = (ids) => {
+  ids.forEach(async (id) => {
+    const data = await getPost(id);
+    console.log(data);
+  });
 };

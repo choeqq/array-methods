@@ -20,8 +20,12 @@ const getPost = async (id) => {
 // };
 
 const getPostSerialized = async (ids) => {
-  for (let i = 0; i < ids.length; i++) {
-    const data = await getPost(ids[i]);
+  // for (let i = 0; i < ids.length; i++) {
+  //   const data = await getPost(ids[i]);
+  //   console.log(data);
+  // }
+  for (const id of ids) {
+    const data = await getPost(id);
     console.log(data);
   }
   console.log("I will wait 4u");
